@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Forms</title>
+</head>
+<body>
+	<form>
+	<fieldset>
+		<legend>Customer Details</legend>
+			<div>
+				<label>First Name </label><input type="text" id="firstName" name="firstName" autofocus placeholder="George">
+			</div>
+			<br>
+			<div>
+				<label>Last Name </label><input type="text" id="lastName" name="lastName" placeholder="Devis">
+			</div>
+			<br>
+			<div>
+				<label>Male</label><input type="radio" name="gender">
+				<label>Female</label><input type="radio" name="gender">
+				<label>Other</label><input type="radio" name="gender">
+			</div>
+			<br>
+			<div>
+				Preferred contact method:
+				<label>Email</label><input type="radio" name="contactMethod">
+				<label>Phone</label><input type="radio" name="contactMethod">
+			</div>
+			<br>
+			<div>
+				<label>Email </label><input type="email" name="email" placeholder="your@email.com">
+			</div>
+			<br>
+			<div>
+				<label>Phone </label><input type="tel" name="phone" placeholder="+359885236225" >
+			</div>
+			<br>
+			<div>
+				<label>Town</label>
+				<select id="town" name="town">
+				<option value="Varna">Varna</option>
+				<option value="Plovdiv">Plovdiv</option>
+				<option value="Burgas">Burgas</option>
+				<option value="Sofia">Sofia</option>
+				<option value="Pleven">Pleven</option>
+				</select>
+			</div>
+			<br>
+			<div>
+				<label>Age </label><input type="number" name="age" min="18" max="70">
+			</div>
+			<br>
+			<div>
+				<label>Programming language</label>
+				<input list="progLang">
+				<datalist id="progLang">
+					<option value="Java">Java</option>
+					<option value="PHP">PHP</option>
+					<option value="C#">C#</option>
+					<option value="JavaScript">JavaScript</option>
+					<option value="Python">Python</option>
+					<option value="Ruby">Ruby</option>
+					<option value="Other">Other</option>
+				</datalist>
+			</div>
+			<br>
+			<div>
+				<label></label>
+					<textarea rows="5" cols="20" placeholder="More information..."></textarea>			
+			</div>
+			<br>
+			<div>
+				<input type="checkbox" name="check">
+				<label>I agree the Terms and Conditions</label>
+			</div>
+			<br>
+			<div>
+				<label></label>
+				<input type="submit" name="Send">
+			</div>
+		<br>
+	</fieldset>
+	</form>
+</body>
+</html>

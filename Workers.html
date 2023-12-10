@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workers</title>
+</head>
+<body>
+    <h1>Form</h1>
+    <form>
+        <div>
+            <label for="id">ID</label>
+            <input type="number" name="id">
+        </div>
+        <div>
+            <label for="firstName">FIRST NAME</label>
+            <input type="text">
+        </div>
+        <div>
+            <label for="lastName">LAST NAME</label>
+            <input type="text">
+        </div>
+        <div>
+            <label for="socialSecurityNumber">SOCIAL SECURITY NUMBER</label>
+            <input type="text">
+        </div>
+        <button id="addBtn" type="submit">Add</button>
+    </form>
+    <div id="workers"></div>
+    <script>
+        const BASE_URL = "https://workers-bdcb6-default-rtdb.firebaseio.com/workers.json";
+
+        function getAllWorkers() {
+            let workersContainer = document.getElementById("workers");
+            let addBtn = document.getElementById("addBtn");
+            addBtn.addEventListener("click", addWorkers);
+
+            workersConstainer.innerHTML = '';
+
+            fetch(Base_URL)
+            .then((response) => response.json())
+            .then((result) => {
+                Object.entries(result).forEach((emp) => {
+                    workersContainer.innerHTML += `
+                    <div><h2>${emp[1].firstName}</h2>
+                    <h3>${emp[1].lastName}</h3>
+                    <p>${emp[1].id}</p>
+                    <h1>${emp[1].socialSecurityNumber}</h1></div>`;
+                });
+            });
+        }
+        getAllWorkers();
+
+        function addWorkers(ev) {
+            ev.preventDefult();
+            let form = ev.target.parentElement;
+            let [id, firstName, lastName, socialSecurityNumber] = form.querySelectorAll("input");
+            if (id.value != "" && firstName.value != "" && lastName.value != "" && socialSecurityNumber.value != ""){
+                let options = {
+                    method: 'POST',
+                    heathod: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        id: id.value,
+                        firstName: firstName.value,
+                        lastName: lastName.value,
+                        socialSecurityNumber: socialSecurityNumber.value,
+                    }),
+                };
+                fetch(BASE_URL, options)
+                .then(response => response.json())
+                .then(result => getAllWorkers());
+            }
+            else {
+                alert('bfjs')
+            }
+        }
+    </script>
+</body>
+</html>

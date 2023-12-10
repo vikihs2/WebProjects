@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+</head>
+<body>
+    <h1>Star Wars Films</h1>
+    <div id="films">
+
+    </div>
+    <button onclick="demo()">
+
+        click me
+    </button>
+    <script>
+        function demo() {
+            let filmsContainer = document.getElementById("films");
+            // let spinner = document.getElementByClassName("lds-ring")[0];
+            // spinner.style.display = "inline-block";
+            // let films = '';
+
+            fetch("https://swapi.dev/api/films")
+            .then((response) => response.json())
+            .then((res) => addResultToHtml(res.results))
+            .catch((err) => console.log("Some err", err));
+
+            function addResultToHtml(result){
+                // spinner.style.display = "none";
+                result.forEach(obj => {
+                    filmsContainer.innerHTML += `<div><h2>${obj.title}</h2>
+                    <h3>Episode ${obj.episode_id}</h3>
+                    <h4>Creator: ${obj.creator}</h4>
+                    <h5>Created: ${obj.created}</h5>
+                    <p>${obj.opening_crawl}</p></div>`;
+                })
+            }
+        };
+    </script>
+</body>
+</html>
